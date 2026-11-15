@@ -1,17 +1,18 @@
 # Twang models
 
-The one place Twang downloads its machine-learning models from. Each model is a GitHub release of
-this repository (one tag per model and version); the files are release assets, never committed.
+The one place Twang downloads its machine-learning models from: one GitHub release of this
+repository holds every model, its files as release assets (never committed).
 Twang pins every file's size and SHA-256 and checks them after downloading.
 
 Samples (the Sound Library) are not here: they download from their original sources.
 
-| Release tag | Used for | Files | Size | Original source | Licence |
+| Model | Used for | Files | Size | Original source | Licence |
 |---|---|---|---|---|---|
-| `yourmt3-v1` | Convert Harmony / Melody / Drums to MIDI | `encoder.onnx`, `decoder.onnx` | 190 MB | YourMT3+ "YPTF.MoE+Multi (noPS)", exported to ONNX by `export/yourmt3_to_onnx.py` | Apache-2.0 (see below) |
-| `htdemucs_ft-v1` | Separate stems | four `*.th` checkpoints | 336 MB | Demucs `htdemucs_ft`, Meta, `dl.fbaipublicfiles.com/demucs/hybrid_transformer` | MIT |
-| `clap-audio-v1` | Auto Tag, similar sounds | `larger_clap_music_and_speech-audio.safetensors` | 275 MB | `laion/larger_clap_music_and_speech` at revision `8a2acdbf`: the first 275,119,376 bytes of `model.safetensors` (header and audio tower) | Apache-2.0 |
+| YourMT3+ | Convert Harmony / Melody / Drums to MIDI | `encoder.onnx`, `decoder.onnx` | 190 MB | YourMT3+ "YPTF.MoE+Multi (noPS)", exported to ONNX by `export/yourmt3_to_onnx.py` | Apache-2.0 (see below) |
+| Demucs | Separate stems | four `*.th` checkpoints | 336 MB | Demucs `htdemucs_ft`, Meta, `dl.fbaipublicfiles.com/demucs/hybrid_transformer` | MIT |
+| CLAP | Auto Tag, similar sounds | `larger_clap_music_and_speech-audio.safetensors` | 275 MB | `laion/larger_clap_music_and_speech` at revision `8a2acdbf`: the first 275,119,376 bytes of `model.safetensors` (header and audio tower) | Apache-2.0 |
 
+All are in release `v1`: `https://github.com/silvestreh/twang-models/releases/download/v1/<file>`.
 `MANIFEST.json` lists every file with its size and SHA-256.
 
 ## Credits and licences
@@ -31,7 +32,8 @@ Samples (the Sound Library) are not here: they download from their original sour
 
 ## Adding or updating a model
 
-1. Make a new release with a new tag (`<model>-v<N>`); never replace an asset under an existing tag.
-2. Add its files to `MANIFEST.json` and the table above.
-3. Point Twang's store at `https://github.com/silvestreh/twang-models/releases/download/<tag>/<file>`
-   with the size and SHA-256 pinned.
+1. Never replace an asset under an existing release. Make the next release (`v2`, …) with every
+   model's files: the unchanged ones uploaded again, the new or updated ones beside them.
+2. Update `MANIFEST.json` and the table above.
+3. Point Twang's stores at `https://github.com/silvestreh/twang-models/releases/download/v<N>/<file>`
+   with the sizes and SHA-256 pinned.
